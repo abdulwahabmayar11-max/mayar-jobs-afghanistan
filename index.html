@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#123b72"><meta name="description" content="Mayar Jobs Afghanistan - کاریابی افغانستان">
+<link rel="manifest" href="./manifest.json"><link rel="icon" href="./icon.svg" type="image/svg+xml">
+<title>Mayar Jobs Afghanistan</title><link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="./" aria-label="Mayar Jobs home"><span class="logo">MJ</span><span><b>Mayar Jobs</b><small id="brandSub">کاریابی افغانستان</small></span></a>
+  <div class="top-actions"><select id="language" aria-label="Language"><option value="fa">دری</option><option value="ps">پښتو</option><option value="en">English</option></select><button id="adminOpen" class="outline small">مدیریت</button></div>
+</header>
+<main>
+<section class="hero">
+  <span class="eyebrow" id="heroEyebrow">فرصت‌های کاری در افغانستان</span>
+  <h1 id="heroTitle">کار مناسب خود را پیدا کنید</h1>
+  <p id="heroText">اعلان‌های کاری معتبر را جست‌وجو کنید و مستقیم با کارفرما تماس بگیرید.</p>
+  <div class="hero-stats"><span><b id="jobCount">0</b><small id="jobsLabel">اعلان کاری</small></span><span><b>۳</b><small id="langsLabel">زبان</small></span><span><b>۱۰۰٪</b><small id="freeLabel">رایگان برای جویندگان کار</small></span></div>
+</section>
+<section class="search-panel">
+  <label class="searchbox"><span>⌕</span><input id="searchInput" type="search" placeholder="عنوان وظیفه، شرکت یا کلمه کلیدی..."></label>
+  <div class="filters">
+    <select id="cityFilter" aria-label="City"><option value="">همه ولایت‌ها</option></select>
+    <select id="typeFilter" aria-label="Job type"><option value="">همه انواع وظیفه</option></select>
+    <select id="sortFilter" aria-label="Sort"><option value="new">جدیدترین</option><option value="old">قدیمی‌ترین</option></select>
+    <button id="clearFilters" class="outline">پاک‌کردن فیلتر</button>
+  </div>
+</section>
+<div class="section-heading"><div><h2 id="listTitle">آخرین فرصت‌های کاری</h2><p id="resultsText">اعلان‌های موجود</p></div><button id="cvOpen" class="primary">＋ ساخت CV</button></div>
+<div id="jobsGrid" class="jobs-grid" aria-live="polite"></div>
+<div id="emptyState" class="empty hidden"><div class="empty-icon">⌕</div><h3 id="emptyTitle">اعلانی پیدا نشد</h3><p id="emptyText">فیلترها را تغییر دهید یا بعداً دوباره بررسی کنید.</p></div>
+<section class="trust-note"><span class="shield">✓</span><div><b id="trustTitle">پیش از درخواست، بررسی کنید</b><p id="trustText">برای گرفتن وظیفه پول پیش‌پرداخت ندهید. اطلاعات هر اعلان را با کارفرما تأیید کنید.</p></div></section>
+</main>
+<footer><span>© <span id="year"></span> Mayar Jobs Afghanistan</span><span id="footerText">کاریابی ساده، برای همه</span></footer>
+
+<div id="jobModal" class="modal hidden" role="dialog" aria-modal="true"><div class="modal-card"><button class="modal-close" data-close="jobModal" aria-label="Close">×</button><div id="jobDetails"></div></div></div>
+<div id="cvModal" class="modal hidden" role="dialog" aria-modal="true"><div class="modal-card"><button class="modal-close" data-close="cvModal" aria-label="Close">×</button><h2 id="cvTitle">ساخت CV رایگان</h2><p id="cvIntro" class="muted">معلومات خود را وارد کنید، سپس چاپ یا به PDF ذخیره کنید.</p>
+<form id="cvForm" class="form-grid">
+<label><span data-i18n="fullName">نام کامل</span><input name="fullName" required maxlength="90"></label>
+<label><span data-i18n="phone">شماره تماس</span><input name="phone" type="tel" required maxlength="35"></label>
+<label><span data-i18n="email">ایمیل (اختیاری)</span><input name="email" type="email" maxlength="100"></label>
+<label><span data-i18n="location">شهر/ولایت</span><input name="location" maxlength="80"></label>
+<label class="full"><span data-i18n="objective">هدف کاری</span><textarea name="objective" rows="3" maxlength="500"></textarea></label>
+<label class="full"><span data-i18n="education">تحصیلات</span><textarea name="education" rows="2" maxlength="500"></textarea></label>
+<label class="full"><span data-i18n="skills">مهارت‌ها</span><textarea name="skills" rows="2" maxlength="500"></textarea></label>
+<label class="full"><span data-i18n="experience">تجربه کاری (اختیاری)</span><textarea name="experience" rows="2" maxlength="700"></textarea></label>
+<div class="full form-actions"><button class="primary" type="submit" id="printCv">نمایش / ذخیره PDF</button><button type="button" class="outline" data-close="cvModal" id="cancelCv">لغو</button></div>
+</form></div></div>
+<div id="adminModal" class="modal hidden" role="dialog" aria-modal="true"><div class="modal-card"><button class="modal-close" data-close="adminModal" aria-label="Close">×</button><h2 id="adminTitle">مدیریت اعلان‌ها</h2><p class="muted" id="adminNotice">این نسخه سایت ایستا است. اعلان‌ها در فایل jobs.json نگهداری می‌شوند؛ تغییرات این صفحه تا وقتی فایل را در GitHub به‌روز نکنید، برای دیگران منتشر نمی‌شود.</p>
+<div id="adminLogin"><form id="adminLoginForm"><label><span id="pinLabel">رمز مدیریت آزمایشی</span><input id="adminPin" type="password" inputmode="numeric" required placeholder="1234"></label><button class="primary" type="submit" id="loginBtn">ورود</button></form><p class="tiny" id="pinWarning">هشدار: این رمز داخل کد عمومی است و امنیت واقعی ایجاد نمی‌کند. برای سایت عمومی، آن را به‌عنوان قفل امن استفاده نکنید.</p></div>
+<div id="adminEditor" class="hidden">
+<form id="jobForm" class="form-grid">
+<label><span id="aTitle">عنوان وظیفه</span><input name="title" required maxlength="100"></label>
+<label><span id="aCompany">نام شرکت</span><input name="company" required maxlength="100"></label>
+<label><span id="aCity">ولایت/شهر</span><input name="city" required maxlength="60"></label>
+<label><span id="aType">نوع وظیفه</span><select name="type"><option value="Full-time">تمام‌وقت</option><option value="Part-time">نیمه‌وقت</option><option value="Contract">قراردادی</option><option value="Internship">کارآموزی</option><option value="Remote">از راه دور</option></select></label>
+<label><span id="aSalary">معاش (اختیاری)</span><input name="salary" maxlength="80"></label>
+<label><span id="aContact">شماره واتساپ با کد کشور</span><input name="whatsapp" placeholder="937XXXXXXXX" inputmode="tel" required maxlength="20"></label>
+<label class="full"><span id="aDesc">شرح وظیفه</span><textarea name="description" rows="4" required maxlength="3000"></textarea></label>
+<label class="full"><span id="aReq">شرایط / مهارت‌ها</span><textarea name="requirements" rows="3" maxlength="2000"></textarea></label>
+<div class="full form-actions"><button class="primary" type="submit" id="addJobBtn">افزودن به پیش‌نویس</button><button type="button" class="outline" id="exportJobs">دانلود/نمایش JSON اعلان‌ها</button></div>
+</form>
+<div id="adminJobsList" class="admin-list"></div>
+<p class="tiny" id="exportHelp">پس از صادرکردن JSON، محتوای فایل را در jobs.json مخزن GitHub جایگزین و Commit changes کنید تا اعلان‌ها برای همه منتشر شوند.</p>
+</div></div></div>
+<div id="toast" class="toast hidden" role="status"></div>
+<script src="./app.js"></script>
+</body></html>
